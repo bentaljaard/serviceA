@@ -1,12 +1,15 @@
 import tornado.ioloop
 import tornado.web
 import os
+import requests
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
         # self.write(os.environ['response_message'])
-        self.write("Hello from python")
+        r = requests.get(os.environ['target_service'])
+
+        self.write(r.text)
 
 class HealthHandler(tornado.web.RequestHandler):
     def get(self):
