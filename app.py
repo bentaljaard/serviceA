@@ -42,7 +42,7 @@ class MainHandler(tornado.web.RequestHandler):
         
 
         response_message["target_service"] = target_service
-
+        self.set_header("Content-Type", "application/json")
         self.write(json.dumps(response_message))
 
 class HealthHandler(tornado.web.RequestHandler):
