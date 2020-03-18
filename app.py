@@ -21,7 +21,7 @@ class MainHandler(tornado.web.RequestHandler):
         
         try:
             # r = requests.get("http://localhost:8081")
-            r = requests.get(os.environ['TARGET_SERVICE'], headers=headers)
+            r = requests.get(os.environ['TARGET_SERVICE'], headers=headers, timeout=0.01)
         except (requests.exceptions.ConnectionError):
             print("Unable to connect")
             error_message = "Connection Error"
