@@ -21,7 +21,7 @@ class MainHandler(tornado.web.RequestHandler):
         
         try:
             # r = requests.get("http://localhost:8081")
-            r = requests.get(os.environ['target_service'], headers=headers)
+            r = requests.get(os.environ['TARGET_SERVICE'], headers=headers)
         except (requests.exceptions.ConnectionError):
             print("Unable to connect")
             error_message = "Connection Error"
@@ -57,5 +57,6 @@ def make_app():
 
 if __name__ == "__main__":
     app = make_app()
-    app.listen(os.environ['LISTEN_PORT'])
+    #app.listen(os.environ['LISTEN_PORT'])
+    app.listen(8080)
     tornado.ioloop.IOLoop.current().start()
